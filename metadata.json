@@ -1,0 +1,6 @@
+{
+  "name": "Nouveau Monde - Restaurant & Lounge",
+  "description": "Site vitrine officiel du restaurant & lounge Nouveau Monde à Bonamoussadi, Douala. Découvrez nos spécialités culinaires, nos grillades, notre ambiance et nos coordonnées.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
