@@ -1,4 +1,4 @@
-import { MapPin, Phone, MessageSquare, Instagram, Heart, ArrowUp } from 'lucide-react';
+import { MapPin, Phone, MessageSquare, Instagram, Heart, ArrowUp, Facebook, Bike } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
 
 export function Footer() {
@@ -26,6 +26,15 @@ export function Footer() {
               Restaurant & Lounge à Bonamoussadi, Douala. Spécialités braisées, grillades généreuses, pizzas artisanales et bar à cocktails dans une ambiance feutrée et festive.
             </p>
             <div className="flex items-center gap-3 pt-2">
+              <a
+                href={RESTAURANT_INFO.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/5 hover:bg-[#1877F2] hover:text-white text-white transition-colors"
+                aria-label="Facebook Nouveau Monde"
+              >
+                <Facebook className="w-4 h-4" />
+              </a>
               <a
                 href={RESTAURANT_INFO.instagramUrl}
                 target="_blank"
@@ -74,6 +83,24 @@ export function Footer() {
             <a href="#contact" className="text-xs hover:text-[#f5c253] transition-colors">
               Contact & Réservations
             </a>
+            <a
+              href={RESTAURANT_INFO.deliveryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-[#f5c253] hover:underline inline-flex items-center gap-1.5 pt-1"
+            >
+              <Bike className="w-3.5 h-3.5" />
+              <span>Commander en Livraison ↗</span>
+            </a>
+            <a
+              href={RESTAURANT_INFO.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs hover:text-[#1877F2] transition-colors inline-flex items-center gap-1.5"
+            >
+              <Facebook className="w-3.5 h-3.5 text-[#1877F2]" />
+              <span>Page Facebook Officielle ↗</span>
+            </a>
           </div>
 
           {/* Horaires d'Ouverture */}
@@ -105,7 +132,7 @@ export function Footer() {
                 <MapPin className="w-4 h-4 text-[#f5c253] shrink-0 mt-0.5" />
                 <div className="flex flex-col">
                   <span className="text-[#f4f1ea] font-medium">{RESTAURANT_INFO.neighborhood}, Douala</span>
-                  <span className="text-white/50">Face Axe Principal · Cameroun</span>
+                  <span className="text-white/50">Face ancienne mairie · Douala, Cameroun</span>
                 </div>
               </div>
               <div className="text-xs text-white/50">

@@ -5,6 +5,7 @@ import {
   Phone,
   MessageSquare,
   Instagram,
+  Facebook,
   Clock,
   Send,
   CheckCircle2,
@@ -33,7 +34,8 @@ export function ContactSection() {
     );
 
     // Open WhatsApp in new tab
-    window.open(`https://wa.me/237699000000?text=${text}`, '_blank');
+    const cleanPhone = RESTAURANT_INFO.phoneClean.replace('+', '');
+    window.open(`https://wa.me/${cleanPhone}?text=${text}`, '_blank');
     setSubmitted(true);
   };
 
@@ -139,14 +141,14 @@ export function ContactSection() {
               </a>
             </div>
 
-            {/* Practical Location Note (Without Google Maps) */}
+            {/* Practical Location Note */}
             <div className="p-6 sm:p-7 bg-[#15151c] border border-white/10 rounded-2xl shadow-xl flex items-center gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#f5c253]/15 flex items-center justify-center text-[#f5c253] shrink-0">
-                <MapPin className="w-5 h-5" />
+              <div className="w-12 h-12 rounded-xl bg-[#f5c253]/15 flex items-center justify-center text-[#f5c253] shrink-0">
+                <MapPin className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-base font-bold text-[#f4f1ea]">
-                  Bonamoussadi, Douala
+                <span className="font-serif text-base sm:text-lg font-bold text-[#f4f1ea]">
+                  Bonamoussadi · Face ancienne mairie
                 </span>
                 <span className="text-xs text-[#a8a396] font-light">
                   {RESTAURANT_INFO.fullAddress} · Parking gardé disponible
@@ -154,23 +156,51 @@ export function ContactSection() {
               </div>
             </div>
 
-            {/* Hours & Instagram Social Proof */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Hours Card */}
-              <div className="p-6 bg-[#15151c] border border-white/10 rounded-2xl shadow-xl">
-                <div className="flex items-center gap-2.5 text-[#f5c253] text-sm font-semibold mb-4">
-                  <Clock className="w-4 h-4" />
-                  <span>Horaires d’Ouverture</span>
-                </div>
-                <div className="space-y-3">
-                  {RESTAURANT_INFO.hours.map((h) => (
-                    <div key={h.days} className="text-xs flex flex-col">
-                      <span className="font-medium text-[#f4f1ea]">{h.days}</span>
-                      <span className="text-[#a8a396] font-light">{h.time}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Hours Card */}
+            <div className="p-6 bg-[#15151c] border border-white/10 rounded-2xl shadow-xl">
+              <div className="flex items-center gap-2.5 text-[#f5c253] text-sm font-semibold mb-4">
+                <Clock className="w-4 h-4" />
+                <span>Horaires d’Ouverture & Service</span>
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {RESTAURANT_INFO.hours.map((h) => (
+                  <div key={h.days} className="text-xs flex flex-col p-3 rounded-xl bg-white/5 border border-white/5">
+                    <span className="font-semibold text-[#f4f1ea] mb-0.5">{h.days}</span>
+                    <span className="text-[#a8a396] font-light">{h.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Social Media Channels: Facebook & Instagram */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Facebook Card */}
+              <a
+                href={RESTAURANT_INFO.facebookUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-6 bg-gradient-to-br from-[#0f172a] to-[#15151c] border border-white/10 hover:border-[#1877F2]/50 rounded-2xl shadow-xl transition-all flex flex-col justify-between"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#1877F2]/20 flex items-center justify-center text-[#1877F2] group-hover:scale-110 transition-transform">
+                    <Facebook className="w-5 h-5" />
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#1877F2] uppercase tracking-wider">
+                    Facebook
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-base font-bold text-white mb-1">
+                    Page Officielle Facebook
+                  </h3>
+                  <p className="text-xs text-[#b8b4a7] font-light mb-3">
+                    Actualités, événements spéciaux et moments de fête en direct.
+                  </p>
+                  <span className="text-xs text-[#1877F2] group-hover:underline font-medium inline-flex items-center gap-1">
+                    Rejoindre sur Facebook →
+                  </span>
+                </div>
+              </a>
 
               {/* Instagram Card */}
               <a
@@ -183,16 +213,18 @@ export function ContactSection() {
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white">
                     <Instagram className="w-5 h-5" />
                   </div>
-                  <span className="text-[11px] text-white/50">Instagram</span>
+                  <span className="text-[11px] font-semibold text-rose-400 uppercase tracking-wider">
+                    Instagram
+                  </span>
                 </div>
                 <div>
                   <h3 className="font-serif text-base font-bold text-white mb-1">
                     {RESTAURANT_INFO.instagramHandle}
                   </h3>
                   <p className="text-xs text-[#b8b4a7] font-light mb-3">
-                    Plongez dans nos stories quotidiennes, vidéos de plats et soirées en direct.
+                    Stories quotidiennes, vidéos des plats et ambiance de salle.
                   </p>
-                  <span className="text-xs text-[#f5c253] group-hover:underline font-medium">
+                  <span className="text-xs text-[#f5c253] group-hover:underline font-medium inline-flex items-center gap-1">
                     Suivre sur Instagram →
                   </span>
                 </div>
