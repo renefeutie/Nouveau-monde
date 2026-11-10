@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { DISHES } from '../data/restaurantData';
 import { Dish } from '../types';
@@ -9,8 +9,29 @@ interface SpecialtiesCarouselProps {
 
 export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const signatureDishes = DISHES.filter((d) => d.isSignature);
+
+  const checkScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll);
+    return () => {
+      el.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', checkScroll);
+    };
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -40,7 +61,12 @@ export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) 
           <button
             type="button"
             onClick={() => scroll('left')}
-            className="p-2.5 rounded-full bg-[#1c1c24] border border-white/10 text-white/70 hover:text-[#f5c253] hover:border-[#f5c253]/40 transition-colors"
+            disabled={!canScrollLeft}
+            className={`p-2.5 rounded-full bg-[#1c1c24] border border-white/10 transition-all ${
+              canScrollLeft
+                ? 'text-white/80 hover:text-[#f5c253] hover:border-[#f5c253]/40 active:scale-95 cursor-pointer'
+                : 'text-white/20 border-white/5 cursor-not-allowed opacity-40'
+            }`}
             aria-label="Faire défiler vers la gauche"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -48,7 +74,12 @@ export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) 
           <button
             type="button"
             onClick={() => scroll('right')}
-            className="p-2.5 rounded-full bg-[#1c1c24] border border-white/10 text-white/70 hover:text-[#f5c253] hover:border-[#f5c253]/40 transition-colors"
+            disabled={!canScrollRight}
+            className={`p-2.5 rounded-full bg-[#1c1c24] border border-white/10 transition-all ${
+              canScrollRight
+                ? 'text-white/80 hover:text-[#f5c253] hover:border-[#f5c253]/40 active:scale-95 cursor-pointer'
+                : 'text-white/20 border-white/5 cursor-not-allowed opacity-40'
+            }`}
             aria-label="Faire défiler vers la droite"
           >
             <ChevronRight className="w-5 h-5" />
@@ -59,21 +90,25 @@ export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) 
       {/* Horizontal Carousel Track */}
       <div
         ref={scrollRef}
-        className="flex gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-none scroll-smooth"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="flex gap-6 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-none scroll-smooth touch-pan-x"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}
       >
         {signatureDishes.map((dish) => (
           <div
             key={dish.id}
             onClick={() => onSelectDish(dish)}
-            className="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-[#f5c253]/40 hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 flex flex-col"
+            className="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-[#f5c253]/40 hover:shadow-2xl hover:shadow-black/60 transition-all duration-300 flex flex-col transform-gpu"
           >
             {/* Image Box */}
             <div className="relative h-60 sm:h-64 overflow-hidden bg-[#1c1c24]">
               <img
                 src={dish.image}
                 alt={dish.name}
-                className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-500 ease-out"
+                className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-500 ease-out will-change-transform"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#15151c] via-transparent to-black/20" />

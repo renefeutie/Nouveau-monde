@@ -93,22 +93,26 @@ export function PhotoGallery({ onOpenItem }: PhotoGalleryProps) {
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
-          <AnimatePresence>
+          <AnimatePresence mode="popLayout">
             {filteredItems.map((item, index) => (
               <motion.div
                 layout
                 key={item.id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.35, delay: index * 0.04 }}
+                exit={{ opacity: 0, scale: 0.92 }}
+                transition={{
+                  duration: 0.35,
+                  delay: Math.min(index * 0.03, 0.2),
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 onClick={() => onOpenItem(item, index, filteredItems.length)}
-                className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden cursor-pointer bg-[#15151c] border border-white/10 hover:border-[#f5c253]/50 shadow-xl transition-all duration-300"
+                className="group relative h-72 sm:h-80 rounded-2xl overflow-hidden cursor-pointer bg-[#15151c] border border-white/10 hover:border-[#f5c253]/50 shadow-xl transition-all duration-300 transform-gpu"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.05] transition-transform duration-500 ease-out will-change-transform"
                   loading="lazy"
                 />
 

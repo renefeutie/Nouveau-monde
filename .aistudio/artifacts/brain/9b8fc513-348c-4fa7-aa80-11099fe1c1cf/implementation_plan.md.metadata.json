@@ -1,0 +1,6 @@
+{
+  "summary":  "Plan d'audit et d'optimisation complète de l'ensemble des animations du site vitrine Nouveau Monde : fluidité 60 FPS, apparition progressive au défilement sans saccades, mode popLayout pour éliminer les layout shifts lors du filtrage, support strict de prefers-reduced-motion et adaptation automatique pour mobiles et tablettes.",
+  "updatedAt":  "2026-11-10T10:10:50.465432625Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

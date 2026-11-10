@@ -21,8 +21,8 @@ export function SpecialtiesSection({ onSelectDish }: SpecialtiesSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-xs font-semibold tracking-[0.25em] text-[#f5c253] uppercase mb-3 flex items-center justify-center gap-2"
           >
             <Utensils className="w-3.5 h-3.5 text-[#d9242d]" />
@@ -32,8 +32,8 @@ export function SpecialtiesSection({ onSelectDish }: SpecialtiesSectionProps) {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#f4f1ea] tracking-tight mb-6"
           >
             Une carte généreuse, <br className="hidden sm:block" />
@@ -43,8 +43,8 @@ export function SpecialtiesSection({ onSelectDish }: SpecialtiesSectionProps) {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-base sm:text-lg text-[#b8b4a7] leading-relaxed font-light"
           >
             Du poulet braisé croustillant aux gambas royales, en passant par nos burgers gourmets, nos pizzas artisanales et le véritable Ndolé camerounais, chaque plat est préparé avec des ingrédients frais et généreux.

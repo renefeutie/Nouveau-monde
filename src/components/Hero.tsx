@@ -121,13 +121,15 @@ export function Hero() {
       </div>
 
       {/* Down Scroll Indicator */}
-      <a
+      <motion.a
         href="#univers"
         aria-label="Faire défiler vers la section Notre Univers"
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 hover:text-[#f5c253] transition-colors p-2"
       >
-        <ArrowDown className="w-5 h-5 animate-bounce" />
-      </a>
+        <ArrowDown className="w-5 h-5" />
+      </motion.a>
     </section>
   );
 }

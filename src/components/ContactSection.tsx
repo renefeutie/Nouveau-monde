@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   MapPin,
   Phone,
@@ -247,117 +247,140 @@ export function ContactSection() {
                 </p>
               </div>
 
-              {submitted ? (
-                <div className="py-8 text-center flex flex-col items-center">
-                  <CheckCircle2 className="w-14 h-14 text-[#f5c253] mb-4 animate-bounce" />
-                  <h4 className="font-serif text-xl font-bold text-[#f4f1ea] mb-2">
-                    Demande transmise avec succès !
-                  </h4>
-                  <p className="text-xs text-[#b8b4a7] max-w-xs mb-6">
-                    Votre demande a été préparée pour WhatsApp. Notre équipe vous répondra très rapidement pour confirmer votre table.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="px-6 py-2 bg-white/10 hover:bg-white/15 text-xs text-white rounded-lg transition-colors"
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="py-8 text-center flex flex-col items-center"
                   >
-                    Envoyer une autre demande
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
-                      Nom complet *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      required
-                      placeholder="Ex. Jean-Paul Moukoko"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
-                      Téléphone ou WhatsApp *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      required
-                      placeholder="Ex. +237 6XX XX XX XX"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', damping: 15, stiffness: 220, delay: 0.05 }}
+                    >
+                      <CheckCircle2 className="w-14 h-14 text-[#f5c253] mb-4" />
+                    </motion.div>
+                    <h4 className="font-serif text-xl font-bold text-[#f4f1ea] mb-2">
+                      Demande transmise avec succès !
+                    </h4>
+                    <p className="text-xs text-[#b8b4a7] max-w-xs mb-6">
+                      Votre demande a été préparée pour WhatsApp. Notre équipe vous répondra très rapidement pour confirmer votre table.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="px-6 py-2 bg-white/10 hover:bg-white/15 text-xs text-white rounded-lg transition-colors cursor-pointer active:scale-95"
+                    >
+                      Envoyer une autre demande
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
                     <div>
-                      <label htmlFor="date" className="block text-xs font-medium text-[#d6d2c8] mb-1.5 flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-[#f5c253]" />
-                        <span>Date souhaitée</span>
+                      <label htmlFor="name" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
+                        Nom complet *
                       </label>
                       <input
-                        type="date"
-                        id="date"
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-xs text-[#f4f1ea] focus:outline-none focus:border-[#f5c253] transition-colors"
+                        type="text"
+                        id="name"
+                        required
+                        placeholder="Ex. Jean-Paul Moukoko"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors"
                       />
                     </div>
 
                     <div>
-                      <label htmlFor="guests" className="block text-xs font-medium text-[#d6d2c8] mb-1.5 flex items-center gap-1">
-                        <Users className="w-3.5 h-3.5 text-[#f5c253]" />
-                        <span>Convives</span>
+                      <label htmlFor="phone" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
+                        Téléphone ou WhatsApp *
                       </label>
-                      <select
-                        id="guests"
-                        value={formData.guests}
-                        onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                        className="w-full px-3 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-xs text-[#f4f1ea] focus:outline-none focus:border-[#f5c253] transition-colors cursor-pointer"
-                      >
-                        <option value="1">1 personne</option>
-                        <option value="2">2 personnes</option>
-                        <option value="3-4">3 à 4 personnes</option>
-                        <option value="5-8">5 à 8 personnes</option>
-                        <option value="8+">Groupe (8+ personnes)</option>
-                      </select>
+                      <input
+                        type="tel"
+                        id="phone"
+                        required
+                        placeholder="Ex. +237 6XX XX XX XX"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors"
+                      />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="notes" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
-                      Précisions ou préférences (optionnel)
-                    </label>
-                    <textarea
-                      id="notes"
-                      rows={3}
-                      placeholder="Ex. Table au calme, anniversaire, espace lounge..."
-                      value={formData.notes}
-                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors resize-none"
-                    />
-                  </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="date" className="block text-xs font-medium text-[#d6d2c8] mb-1.5 flex items-center gap-1">
+                          <Calendar className="w-3.5 h-3.5 text-[#f5c253]" />
+                          <span>Date souhaitée</span>
+                        </label>
+                        <input
+                          type="date"
+                          id="date"
+                          value={formData.date}
+                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          className="w-full px-3 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-xs text-[#f4f1ea] focus:outline-none focus:border-[#f5c253] transition-colors"
+                        />
+                      </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 bg-[#d9242d] hover:bg-[#b81b23] text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-xl shadow-red-900/30 flex items-center justify-center gap-2 transition-all cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>Envoyer la demande</span>
-                  </button>
+                      <div>
+                        <label htmlFor="guests" className="block text-xs font-medium text-[#d6d2c8] mb-1.5 flex items-center gap-1">
+                          <Users className="w-3.5 h-3.5 text-[#f5c253]" />
+                          <span>Convives</span>
+                        </label>
+                        <select
+                          id="guests"
+                          value={formData.guests}
+                          onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                          className="w-full px-3 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-xs text-[#f4f1ea] focus:outline-none focus:border-[#f5c253] transition-colors cursor-pointer"
+                        >
+                          <option value="1">1 personne</option>
+                          <option value="2">2 personnes</option>
+                          <option value="3-4">3 à 4 personnes</option>
+                          <option value="5-8">5 à 8 personnes</option>
+                          <option value="8+">Groupe (8+ personnes)</option>
+                        </select>
+                      </div>
+                    </div>
 
-                  <p className="text-[11px] text-center text-white/40 pt-1">
-                    Confirmation immédiate par WhatsApp ou téléphone.
-                  </p>
-                </form>
-              )}
+                    <div>
+                      <label htmlFor="notes" className="block text-xs font-medium text-[#d6d2c8] mb-1.5">
+                        Précisions ou préférences (optionnel)
+                      </label>
+                      <textarea
+                        id="notes"
+                        rows={3}
+                        placeholder="Ex. Table au calme, anniversaire, espace lounge..."
+                        value={formData.notes}
+                        onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                        className="w-full px-4 py-2.5 bg-[#0c0c0e] border border-white/10 rounded-lg text-sm text-[#f4f1ea] placeholder-white/30 focus:outline-none focus:border-[#f5c253] transition-colors resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 bg-[#d9242d] hover:bg-[#b81b23] text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-xl shadow-red-900/30 flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-98"
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Envoyer la demande</span>
+                    </button>
+
+                    <p className="text-[11px] text-center text-white/40 pt-1">
+                      Confirmation immédiate par WhatsApp ou téléphone.
+                    </p>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>

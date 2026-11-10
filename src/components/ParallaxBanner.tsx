@@ -1,16 +1,26 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { Sparkles } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
 
 export function ParallaxBanner() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
+
   return (
-    <section className="relative py-28 sm:py-36 overflow-hidden bg-[#0c0c0e]">
-      {/* Background with Parallax/Fixed Feel and Scrim */}
-      <div className="absolute inset-0 z-0">
-        <img
+    <section ref={containerRef} className="relative py-28 sm:py-36 overflow-hidden bg-[#0c0c0e]">
+      {/* Background with Hardware-Accelerated Parallax and Scrim */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.img
+          style={{ y }}
           src="/assets/aistudio/IMG_4244_5c647a50.jpeg"
           alt="Ambiance lounge Nouveau Monde"
-          className="w-full h-full object-cover object-center filter brightness-[0.35] contrast-[1.1] scale-105"
+          className="w-full h-[120%] -top-[10%] absolute object-cover object-center filter brightness-[0.35] contrast-[1.1] transform-gpu will-change-transform"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0e] via-transparent to-[#0c0c0e]" />
       </div>

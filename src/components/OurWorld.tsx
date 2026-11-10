@@ -61,11 +61,11 @@ export function OurWorld({ onOpenImage }: OurWorldProps) {
             return (
               <motion.div
                 key={space.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#f5c253]/30 transition-all duration-300 shadow-xl"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#f5c253]/40 transition-all duration-300 shadow-xl transform-gpu"
               >
                 {/* Image Frame */}
                 <div
@@ -75,7 +75,7 @@ export function OurWorld({ onOpenImage }: OurWorldProps) {
                   <img
                     src={space.image}
                     alt={space.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-500 ease-out will-change-transform"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#15151c] via-[#15151c]/20 to-transparent" />

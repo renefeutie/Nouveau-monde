@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MotionConfig } from 'motion/react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { OurWorld } from './components/OurWorld';
@@ -87,40 +88,42 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0c0e] text-[#f4f1ea] font-sans selection:bg-[#f5c253] selection:text-[#0c0c0e]">
-      {/* Fixed Luxury Navigation Bar */}
-      <Navbar />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen bg-[#0c0c0e] text-[#f4f1ea] font-sans selection:bg-[#f5c253] selection:text-[#0c0c0e]">
+        {/* Fixed Luxury Navigation Bar */}
+        <Navbar />
 
-      <main>
-        {/* Section 1 & 2: Hero Section */}
-        <Hero />
+        <main>
+          {/* Section 1 & 2: Hero Section */}
+          <Hero />
 
-        {/* Section 3: Notre Univers (Restaurant, Lounge & Baby-Foot) */}
-        <OurWorld onOpenImage={handleOpenCustomImage} />
+          {/* Section 3: Notre Univers (Restaurant, Lounge & Baby-Foot) */}
+          <OurWorld onOpenImage={handleOpenCustomImage} />
 
-        {/* Section 4 & 5: Nos Spécialités (Carousel + Filterable Grid with Motion) */}
-        <SpecialtiesSection onSelectDish={handleSelectDish} />
+          {/* Section 4 & 5: Nos Spécialités (Carousel + Filterable Grid with Motion) */}
+          <SpecialtiesSection onSelectDish={handleSelectDish} />
 
-        {/* Editorial Parallax Atmosphere Break */}
-        <ParallaxBanner />
+          {/* Editorial Parallax Atmosphere Break */}
+          <ParallaxBanner />
 
-        {/* Section 6: Galerie Photos & Moments de Convivialité */}
-        <PhotoGallery onOpenItem={handleOpenGalleryItem} />
+          {/* Section 6: Galerie Photos & Moments de Convivialité */}
+          <PhotoGallery onOpenItem={handleOpenGalleryItem} />
 
-        {/* Section 7: Contact, Accès Bonamoussadi, Maps & WhatsApp */}
-        <ContactSection />
-      </main>
+          {/* Section 7: Contact, Accès Bonamoussadi, Maps & WhatsApp */}
+          <ContactSection />
+        </main>
 
-      {/* Section 8: Footer */}
-      <Footer />
+        {/* Section 8: Footer */}
+        <Footer />
 
-      {/* Full-Screen Lightbox Modal */}
-      <LightboxModal
-        data={lightboxData}
-        onClose={() => setLightboxData(null)}
-        onNext={handleNext}
-        onPrev={handlePrev}
-      />
-    </div>
+        {/* Full-Screen Lightbox Modal */}
+        <LightboxModal
+          data={lightboxData}
+          onClose={() => setLightboxData(null)}
+          onNext={handleNext}
+          onPrev={handlePrev}
+        />
+      </div>
+    </MotionConfig>
   );
 }

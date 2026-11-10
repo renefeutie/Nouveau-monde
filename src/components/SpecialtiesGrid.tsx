@@ -46,24 +46,28 @@ export function SpecialtiesGrid({ onSelectDish }: SpecialtiesGridProps) {
         layout
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        <AnimatePresence>
+        <AnimatePresence mode="popLayout">
           {filteredDishes.map((dish, index) => (
             <motion.div
               layout
               key={dish.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{
+                duration: 0.35,
+                delay: Math.min(index * 0.03, 0.2),
+                ease: [0.16, 1, 0.3, 1],
+              }}
               onClick={() => onSelectDish(dish)}
-              className="group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-[#f5c253]/40 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/70 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-[#15151c] border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:border-[#f5c253]/40 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/70 transition-all duration-300 flex flex-col justify-between transform-gpu"
             >
               {/* Dish Photo */}
               <div className="relative h-64 sm:h-72 overflow-hidden bg-[#1c1c24]">
                 <img
                   src={dish.image}
                   alt={dish.name}
-                  className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-cover object-center group-hover:scale-[1.04] transition-transform duration-500 ease-out will-change-transform"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#15151c] via-transparent to-black/20" />
