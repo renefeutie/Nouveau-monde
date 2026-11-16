@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Sparkles, Users, GlassWater, Trophy, ArrowRight } from 'lucide-react';
 import { SPACES } from '../data/restaurantData';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 interface OurWorldProps {
   onOpenImage?: (image: string, title: string, caption: string) => void;
@@ -27,16 +28,14 @@ export function OurWorld({ onOpenImage }: OurWorldProps) {
             <span>Notre Univers & Ambiance</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <RiseSettleHeading
+            tag="h2"
+            centered
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#f4f1ea] tracking-tight mb-6"
           >
-            L’élégance d’un Lounge, <br className="hidden sm:block" />
+            L’élégance d’un Lounge, <br className="hidden sm:block" data-line-break="sm" />
             <span className="text-[#f5c253]">la chaleur du partage.</span>
-          </motion.h2>
+          </RiseSettleHeading>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -92,9 +91,9 @@ export function OurWorld({ onOpenImage }: OurWorldProps) {
                     <span className="text-xs font-semibold tracking-wider text-[#d9242d] uppercase">
                       {space.subtitle}
                     </span>
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#f4f1ea] mt-1 mb-3">
+                    <RiseSettleHeading tag="h3" className="font-serif text-xl sm:text-2xl font-bold text-[#f4f1ea] mt-1 mb-3">
                       {space.title}
-                    </h3>
+                    </RiseSettleHeading>
                     <p className="text-sm text-[#b8b4a7] leading-relaxed mb-6 font-light">
                       {space.description}
                     </p>
@@ -128,9 +127,9 @@ export function OurWorld({ onOpenImage }: OurWorldProps) {
               <Users className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-serif text-lg font-bold text-[#f4f1ea]">
+              <RiseSettleHeading tag="h4" className="font-serif text-lg font-bold text-[#f4f1ea]">
                 Une atmosphère pensée pour vos sorties entre amis & collègues
-              </h4>
+              </RiseSettleHeading>
               <p className="text-xs sm:text-sm text-[#b8b4a7] font-light">
                 Afterwork décontracté, dîner en amoureux ou soirée festive le week-end à Bonamoussadi.
               </p>

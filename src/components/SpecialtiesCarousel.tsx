@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { DISHES } from '../data/restaurantData';
 import { Dish } from '../types';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 interface SpecialtiesCarouselProps {
   onSelectDish: (dish: Dish) => void;
@@ -51,9 +52,9 @@ export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) 
           <span className="text-xs font-semibold tracking-wider text-[#d9242d] uppercase">
             Sélection Signature
           </span>
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#f4f1ea]">
+          <RiseSettleHeading tag="h3" className="font-serif text-xl sm:text-2xl font-bold text-[#f4f1ea]">
             Les Incontournables de la Maison
-          </h3>
+          </RiseSettleHeading>
         </div>
 
         {/* Arrow Buttons */}
@@ -133,9 +134,9 @@ export function SpecialtiesCarousel({ onSelectDish }: SpecialtiesCarouselProps) 
                 <span className="text-[11px] font-semibold tracking-wider text-white/50 uppercase">
                   {dish.categoryLabel}
                 </span>
-                <h4 className="font-serif text-lg font-bold text-[#f4f1ea] mt-1 mb-2 group-hover:text-[#f5c253] transition-colors line-clamp-1">
+                <RiseSettleHeading tag="h4" className="font-serif text-lg font-bold text-[#f4f1ea] mt-1 mb-2 group-hover:text-[#f5c253] transition-colors">
                   {dish.name}
-                </h4>
+                </RiseSettleHeading>
                 <p className="text-xs text-[#b8b4a7] leading-relaxed line-clamp-2 font-light">
                   {dish.description}
                 </p>

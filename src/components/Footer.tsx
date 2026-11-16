@@ -1,5 +1,6 @@
 import { MapPin, Phone, MessageSquare, Instagram, Heart, ArrowUp, Facebook, Bike } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 export function Footer() {
   const scrollToTop = () => {
@@ -65,9 +66,9 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div className="flex flex-col gap-3">
-            <h4 className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
+            <RiseSettleHeading tag="h4" className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
               Navigation
-            </h4>
+            </RiseSettleHeading>
             <a href="#hero" className="text-xs hover:text-[#f5c253] transition-colors">
               Accueil
             </a>
@@ -105,9 +106,9 @@ export function Footer() {
 
           {/* Horaires d'Ouverture */}
           <div className="flex flex-col gap-3">
-            <h4 className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
+            <RiseSettleHeading tag="h4" className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
               Horaires de Service
-            </h4>
+            </RiseSettleHeading>
             <div className="space-y-2 text-xs">
               <div>
                 <span className="block text-[#f4f1ea] font-medium">Lundi – Jeudi</span>
@@ -125,9 +126,9 @@ export function Footer() {
 
             {/* Localisation */}
             <div className="flex flex-col gap-3">
-              <h4 className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
+              <RiseSettleHeading tag="h4" className="font-serif text-sm font-bold text-[#f4f1ea] uppercase tracking-wider mb-1">
                 Localisation
-              </h4>
+              </RiseSettleHeading>
               <div className="flex items-start gap-2.5 text-xs">
                 <MapPin className="w-4 h-4 text-[#f5c253] shrink-0 mt-0.5" />
                 <div className="flex flex-col">

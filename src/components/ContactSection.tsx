@@ -13,6 +13,7 @@ import {
   Users,
 } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/restaurantData';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -59,16 +60,14 @@ export function ContactSection() {
             <span>Contact & Réservations</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <RiseSettleHeading
+            tag="h2"
+            centered
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#f4f1ea] tracking-tight mb-6"
           >
-            Nous rendre visite <br className="hidden sm:block" />
+            Nous rendre visite <br className="hidden sm:block" data-line-break="sm" />
             <span className="text-[#f5c253]">à Bonamoussadi.</span>
-          </motion.h2>
+          </RiseSettleHeading>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -102,9 +101,9 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-[#f4f1ea] mb-1">
+                  <RiseSettleHeading tag="h3" className="font-serif text-lg font-bold text-[#f4f1ea] mb-1">
                     WhatsApp Direct
-                  </h3>
+                  </RiseSettleHeading>
                   <p className="text-xs text-[#b8b4a7] font-light mb-4">
                     Réservations rapides, informations et échange direct avec notre équipe.
                   </p>
@@ -128,9 +127,9 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold text-[#f4f1ea] mb-1">
+                  <RiseSettleHeading tag="h3" className="font-serif text-lg font-bold text-[#f4f1ea] mb-1">
                     Nous Appeler
-                  </h3>
+                  </RiseSettleHeading>
                   <p className="text-xs text-[#b8b4a7] font-light mb-4">
                     Accueil téléphonique continu pendant les horaires d’ouverture.
                   </p>
@@ -190,9 +189,9 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-bold text-white mb-1">
+                  <RiseSettleHeading tag="h3" className="font-serif text-base font-bold text-white mb-1">
                     Page Officielle Facebook
-                  </h3>
+                  </RiseSettleHeading>
                   <p className="text-xs text-[#b8b4a7] font-light mb-3">
                     Actualités, événements spéciaux et moments de fête en direct.
                   </p>
@@ -218,9 +217,9 @@ export function ContactSection() {
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-base font-bold text-white mb-1">
+                  <RiseSettleHeading tag="h3" className="font-serif text-base font-bold text-white mb-1">
                     {RESTAURANT_INFO.instagramHandle}
-                  </h3>
+                  </RiseSettleHeading>
                   <p className="text-xs text-[#b8b4a7] font-light mb-3">
                     Stories quotidiennes, vidéos des plats et ambiance de salle.
                   </p>
@@ -239,9 +238,9 @@ export function ContactSection() {
                 <span className="text-xs font-semibold tracking-wider text-[#d9242d] uppercase">
                   Réservation & Informations
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#f4f1ea] mt-1 mb-2">
+                <RiseSettleHeading tag="h3" className="font-serif text-2xl font-bold text-[#f4f1ea] mt-1 mb-2">
                   Réserver une Table
-                </h3>
+                </RiseSettleHeading>
                 <p className="text-xs text-[#b8b4a7] font-light">
                   Remplissez ce formulaire pour nous transmettre vos souhaits en un instant.
                 </p>
@@ -264,9 +263,9 @@ export function ContactSection() {
                     >
                       <CheckCircle2 className="w-14 h-14 text-[#f5c253] mb-4" />
                     </motion.div>
-                    <h4 className="font-serif text-xl font-bold text-[#f4f1ea] mb-2">
+                    <RiseSettleHeading tag="h4" centered className="font-serif text-xl font-bold text-[#f4f1ea] mb-2">
                       Demande transmise avec succès !
-                    </h4>
+                    </RiseSettleHeading>
                     <p className="text-xs text-[#b8b4a7] max-w-xs mb-6">
                       Votre demande a été préparée pour WhatsApp. Notre équipe vous répondra très rapidement pour confirmer votre table.
                     </p>

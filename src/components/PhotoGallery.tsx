@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Camera, Maximize2 } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data/restaurantData';
 import { GalleryItem } from '../types';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 interface PhotoGalleryProps {
   onOpenItem: (item: GalleryItem, index: number, total: number) => void;
@@ -43,16 +44,14 @@ export function PhotoGallery({ onOpenItem }: PhotoGalleryProps) {
             <span>Galerie Visuelle</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <RiseSettleHeading
+            tag="h2"
+            centered
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#f4f1ea] tracking-tight mb-6"
           >
-            L’expérience Nouveau Monde <br className="hidden sm:block" />
+            L’expérience Nouveau Monde <br className="hidden sm:block" data-line-break="sm" />
             <span className="text-[#f5c253]">en images.</span>
-          </motion.h2>
+          </RiseSettleHeading>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -133,9 +132,9 @@ export function PhotoGallery({ onOpenItem }: PhotoGalleryProps) {
 
                 {/* Bottom Caption Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                  <h3 className="font-serif text-base font-bold text-white mb-1 group-hover:text-[#f5c253] transition-colors line-clamp-1">
+                  <RiseSettleHeading tag="h3" className="font-serif text-base font-bold text-white mb-1 group-hover:text-[#f5c253] transition-colors">
                     {item.title}
-                  </h3>
+                  </RiseSettleHeading>
                   <p className="text-xs text-white/70 line-clamp-2 font-light">
                     {item.caption}
                   </p>

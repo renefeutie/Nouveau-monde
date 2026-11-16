@@ -3,6 +3,7 @@ import { Utensils } from 'lucide-react';
 import { SpecialtiesCarousel } from './SpecialtiesCarousel';
 import { SpecialtiesGrid } from './SpecialtiesGrid';
 import { Dish } from '../types';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 interface SpecialtiesSectionProps {
   onSelectDish: (dish: Dish) => void;
@@ -29,16 +30,14 @@ export function SpecialtiesSection({ onSelectDish }: SpecialtiesSectionProps) {
             <span>Nos Spécialités Culinaires</span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          <RiseSettleHeading
+            tag="h2"
+            centered
             className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#f4f1ea] tracking-tight mb-6"
           >
-            Une carte généreuse, <br className="hidden sm:block" />
+            Une carte généreuse, <br className="hidden sm:block" data-line-break="sm" />
             <span className="text-[#f5c253]">des cuissons maîtrisées à la flamme.</span>
-          </motion.h2>
+          </RiseSettleHeading>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

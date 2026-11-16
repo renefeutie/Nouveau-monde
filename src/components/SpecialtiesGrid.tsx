@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Utensils, Eye, Flame, ChefHat } from 'lucide-react';
 import { DISHES, DISH_CATEGORIES } from '../data/restaurantData';
 import { Dish, DishCategory } from '../types';
+import { RiseSettleHeading } from './RiseSettleHeading';
 
 interface SpecialtiesGridProps {
   onSelectDish: (dish: Dish) => void;
@@ -99,9 +100,9 @@ export function SpecialtiesGrid({ onSelectDish }: SpecialtiesGridProps) {
                     )}
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-[#f4f1ea] group-hover:text-[#f5c253] transition-colors mb-2.5">
+                  <RiseSettleHeading tag="h3" className="font-serif text-xl font-bold text-[#f4f1ea] group-hover:text-[#f5c253] transition-colors mb-2.5">
                     {dish.name}
-                  </h3>
+                  </RiseSettleHeading>
 
                   <p className="text-sm text-[#b8b4a7] leading-relaxed font-light">
                     {dish.description}
@@ -125,9 +126,9 @@ export function SpecialtiesGrid({ onSelectDish }: SpecialtiesGridProps) {
       {/* Helpful Order / Info Callout */}
       <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#181822] via-[#1c1c26] to-[#181822] border border-white/10 text-center max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-left">
-          <h4 className="font-serif text-lg font-bold text-[#f4f1ea]">
+          <RiseSettleHeading tag="h4" className="font-serif text-lg font-bold text-[#f4f1ea]">
             Envie de savourer ces délices dès ce soir ?
-          </h4>
+          </RiseSettleHeading>
           <p className="text-xs sm:text-sm text-[#b8b4a7] font-light mt-1">
             Contactez notre équipe sur WhatsApp pour réserver votre table ou connaître les suggestions du chef.
           </p>
